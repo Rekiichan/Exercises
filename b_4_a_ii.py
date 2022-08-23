@@ -1,6 +1,5 @@
 from matplotlib import pyplot as plt
 import numpy as np
-import cv2 as cv
 
 def process(mat):
     res = np.random.randn(96, 64)
@@ -16,7 +15,7 @@ def process(mat):
 
             r, c = int(row/4), int(col/4)
             res[r][c] = int(sum/16)
-            
+
     return res
 
 if __name__ == "__main__":
