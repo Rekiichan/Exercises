@@ -8,7 +8,6 @@ fig.add_subplot(2, 2, 1)
 
 plt.imshow(mat)
 plt.title('8 bits')
-plt.gray()
 
 output6 = mat * 64 / 255 
 output6 = np.round_(output6)
@@ -24,5 +23,4 @@ fig.add_subplot(2, 2, 4)
 plt.imshow(output3)
 plt.title('3 bits')
 
-plt.gray()
 plt.show()
