@@ -2,23 +2,22 @@ from matplotlib import pyplot as plt
 import numpy as np
 import cv2 as cv
 
-mat = np.loadtxt('1_3.asc') # skiprows=6
-res = np.copy(mat)
-rows = len(mat)     #384 / 4 = 96
-cols = len(mat[0])  #256 / 4 = 64
-out = cv.resize(src=mat, dsize=(64, 96))
-    
-fig = plt.figure(figsize=(10, 7)) #create figure
-fig.add_subplot(1, 2, 1)
+def process(mat):
+    out = cv.resize(src=mat, dsize=(64, 96))
+    return out
 
-plt.imshow(mat)
-plt.title('original')
-# plt.gray()
+if __name__ == "__main__":
+    mat = np.loadtxt('1_3.asc')
+    res = process(mat)
 
-fig.add_subplot(1, 2, 2)
+    fig = plt.figure(figsize=(10, 7)) #create figure
 
-plt.imshow(out)
-plt.title('result')
-# plt.gray()
+    fig.add_subplot(1, 2, 1)
+    plt.imshow(mat)
+    plt.title('original')
 
-plt.show()
+    fig.add_subplot(1, 2, 2)
+    plt.imshow(res)
+    plt.title('result')
+
+    plt.show()
