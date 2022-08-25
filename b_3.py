@@ -1,21 +1,28 @@
 import cv2 as cv
 
-def process(src):
+def process(src, rowsOfBlock, colsOfBlock):
     img = cv.imread(src)
-    res = cv.imread(src) 
+    out = cv.imread(src) 
     
-    for row in range(0,4):
-        for col in range(0,4):
-            rev_row = 3 - row
-            rev_col = 3 - col
-            for index_row in range(0,32):
-                for index_col in range(0,32):
-                    res[rev_row*32 + index_row][rev_col*32 + index_col] = img[row*32 + index_row][col*32 + index_col]
+    rows = len(img)
+    cols = len(img[0])
+    rowOfOneBlock = int(rows / rowsOfBlock)
+    colOfOneBlock = int(cols / colsOfBlock)
+
+    for row in range(0,rowsOfBlock):
+        for col in range(0,colsOfBlock):
+            rev_row = rowsOfBlock - 1 - row
+            rev_col = colsOfBlock - 1 - col
+            for index_row in range(0,rowOfOneBlock):
+                for index_col in range(0,colOfOneBlock):
+                    out[rev_row*rowOfOneBlock + index_row][rev_col*colOfOneBlock + index_col] = img[row*rowOfOneBlock + index_row][col*colOfOneBlock + index_col]
             
-    cv.imshow('original img', img)
-    cv.imshow('converted img', res)
-    cv.waitKey()
-    cv.destroyAllWindows()
+    return img, out
 
 if __name__ == "__main__":
-    process('1_2.tif')
+    img, out = process('1_2.tif',3,7)
+
+    cv.imshow('original img', img)
+    cv.imshow('converted img', out)
+    cv.waitKey()
+    cv.destroyAllWindows()

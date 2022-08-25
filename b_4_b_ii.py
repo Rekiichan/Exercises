@@ -1,14 +1,14 @@
 from matplotlib import pyplot as plt
 import numpy as np
 
-def Bilinear_Interpolation(mat, factorValue):
+def Bilinear_Interpolation(mat,factorValue):
 
     # lay so hang va so cot de khoi tao ma tran ket qua 
     rows = len(mat) * factorValue
     cols = len(mat[0]) * factorValue
 
     #khoi tao ma tran ket qua
-    convertedImage = np.zeros((rows, cols))
+    convertedImage = np.zeros((rows,cols))
     
     for row in range(0, len(mat) - 1):
         for col in range(0, len(mat[0]) - 1):
@@ -29,7 +29,7 @@ def Bilinear_Interpolation(mat, factorValue):
 
 if __name__ == "__main__":
     matrix = np.loadtxt('1_3.asc')
-    res = Bilinear_Interpolation(matrix, 4)
+    res = Bilinear_Interpolation(matrix,4)
 
     fig = plt.figure(figsize=(12, 9))
 

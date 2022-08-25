@@ -8,7 +8,6 @@ def rgb2gray(src):
 if __name__ == "__main__":
     imgGray = rgb2gray('1_2.tif')
     imgRgb = cv.imread('1_2.tif')
-    cv.imshow('image rgb', imgRgb)
     cv.imshow('image gray', imgGray)
     cv.waitKey()
     cv.destroyAllWindows()

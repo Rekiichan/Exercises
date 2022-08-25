@@ -12,8 +12,10 @@ def getMinMaxOfImg(src):
     return smallest, largest
 
 if __name__ == "__main__":
+
     type = getType('1_4.bmp')
-    print('Type:', type)
     minVal, maxVal = getMinMaxOfImg('1_4.bmp')
+
+    print('Type:', type)
     print('Min data value:', minVal)
     print('Max data value:', maxVal)

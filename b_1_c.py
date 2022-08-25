@@ -10,5 +10,4 @@ def convertIntToDouble(src):
     return res
 
 if __name__ == "__main__":
-    src = '1_4.bmp'
-    res = convertIntToDouble(src)
+    res = convertIntToDouble('1_4.bmp')

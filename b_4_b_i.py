@@ -7,26 +7,24 @@ def reduceResolution(mat):
     return out
 
 if __name__ == "__main__":
-    matrix = np.loadtxt('1_3.asc')
-    res = np.copy(matrix)
-    Y1 = reduceResolution(matrix)
+    Init_Image = np.loadtxt('1_3.asc')
+    print(Init_Image.shape)
+    Enlarged_Image = np.zeros((384,256))
+    reduced_resolution_image = reduceResolution(Init_Image)
     for row in range(0, 96):
         for col in range(0, 64):
             for i in range(0,4):
                 for j in range(0,4):
-                    res[row*4+i][col*4+j] = int(Y1[row, col])
-    
-    print(Y1.shape)
-    print(res.shape)
+                    Enlarged_Image[row*4+i][col*4+j] = int(reduced_resolution_image[row, col])
 
     fig = plt.figure(figsize=(10, 7))  # create figure
 
     fig.add_subplot(1, 2, 1)
-    plt.imshow(Y1)
-    plt.title('Y1')
+    plt.imshow(reduced_resolution_image)
+    plt.title('Reduced Resolution Image')
 
     fig.add_subplot(1, 2, 2)
-    plt.imshow(res)
-    plt.title('result')
+    plt.imshow(Enlarged_Image)
+    plt.title('Enlarged Image')
 
     plt.show()
