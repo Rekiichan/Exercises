@@ -2,7 +2,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 def process(mat):
-    res = np.random.randn(96, 64)
+    res = np.zeros((96, 64))
     rows = len(mat)     #384 / 4 = 96
     cols = len(mat[0])  #256 / 4 = 64
 
