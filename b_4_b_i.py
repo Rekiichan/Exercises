@@ -8,7 +8,6 @@ def reduceResolution(mat):
 
 if __name__ == "__main__":
     Init_Image = np.loadtxt('1_3.asc')
-    print(Init_Image.shape)
     Enlarged_Image = np.zeros((384,256))
     reduced_resolution_image = reduceResolution(Init_Image)
     for row in range(0, 96):
