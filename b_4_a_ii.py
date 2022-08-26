@@ -6,7 +6,8 @@ def process(mat):
     rows = len(mat)
     cols = len(mat[0])
     res = np.zeros((int(rows / 4), int(cols / 4)))
-
+    print(res.shape)
+    print(mat.shape)
     for row in range(0,rows,4):
         for col in range(0,cols,4):
             sum = 0
@@ -35,3 +36,4 @@ if __name__ == "__main__":
     plt.title('result')
 
     plt.show()
+

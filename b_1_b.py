@@ -19,3 +19,5 @@ if __name__ == "__main__":
     print('Type:', type)
     print('Min data value:', minVal)
     print('Max data value:', maxVal)
+
+    

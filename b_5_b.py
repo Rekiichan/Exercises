@@ -24,3 +24,4 @@ plt.imshow(output3)
 plt.title('3 bits')
 
 plt.show()
+

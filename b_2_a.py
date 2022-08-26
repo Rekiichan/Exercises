@@ -11,4 +11,4 @@ if __name__ == "__main__":
     cv.imshow('image gray', imgGray)
     cv.waitKey()
     cv.destroyAllWindows()
-    
+

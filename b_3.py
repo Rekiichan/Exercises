@@ -2,8 +2,7 @@ import cv2 as cv
 
 def process(src, rowsOfBlock, colsOfBlock):
     img = cv.imread(src)
-    out = cv.imread(src) 
-    
+    out = cv.imread(src)
     rows = len(img)
     cols = len(img[0])
     rowOfOneBlock = int(rows / rowsOfBlock)
@@ -20,9 +19,12 @@ def process(src, rowsOfBlock, colsOfBlock):
     return img, out
 
 if __name__ == "__main__":
-    img, out = process('1_2.tif',3,7)
+    img, out = process('1_2.tif',4,4)
 
     cv.imshow('original img', img)
     cv.imshow('converted img', out)
     cv.waitKey()
     cv.destroyAllWindows()
+
+
+    
