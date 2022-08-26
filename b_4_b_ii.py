@@ -1,5 +1,6 @@
 from matplotlib import pyplot as plt
 import numpy as np
+import cv2 as cv
 
 def Bilinear_Interpolation(mat,factorValue):
 
@@ -36,7 +37,7 @@ if __name__ == "__main__":
     fig.add_subplot(1, 2, 1)
     plt.imshow(matrix)
     plt.title('original')
-
+    
     fig.add_subplot(1, 2, 2)
     plt.imshow(res)
     plt.title('result')

@@ -2,7 +2,6 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 def process(mat):
-
     rows = len(mat)
     cols = len(mat[0])
     res = np.zeros((int(rows / 4), int(cols / 4)))
@@ -10,14 +9,10 @@ def process(mat):
     print(mat.shape)
     for row in range(0,rows,4):
         for col in range(0,cols,4):
-            sum = 0
-            for i in range(row, row + 4):
-                for j in range(col, col + 4):
-                    sum += mat[i][j]
-
+            average_matrix = mat[row : row + 4, col : col + 4]
+            ave = np.average(average_matrix)
             r, c = int(row/4), int(col/4)
-            res[r][c] = int(sum/pow(4,2))
-
+            res[r][c] = ave
     return res
 
 if __name__ == "__main__":
