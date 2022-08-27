@@ -17,7 +17,7 @@ if __name__ == "__main__":
                     Enlarged_Image[row*4+i][col*4+j] = int(reduced_resolution_image[row, col])
 
     fig = plt.figure(figsize=(10, 7))  # create figure
-
+    print(Enlarged_Image.shape)
     fig.add_subplot(1, 2, 1)
     plt.imshow(reduced_resolution_image)
     plt.title('Reduced Resolution Image')
