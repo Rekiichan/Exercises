@@ -12,13 +12,11 @@ if __name__ == "__main__":
     reduced_resolution_image = reduceResolution(Init_Image)
     for row in range(0, 96):
         for col in range(0, 64):
-            for i in range(0,4):
-                for j in range(0,4):
-                    Enlarged_Image[row*4+i][col*4+j] = int(reduced_resolution_image[row, col])
+            Enlarged_Image[row*4:row*4+4,col*4:col*4+4] = reduced_resolution_image[row, col]
 
     fig = plt.figure(figsize=(10, 7))  # create figure
-    print(Enlarged_Image.shape)
     fig.add_subplot(1, 2, 1)
+    plt.gray()
     plt.imshow(reduced_resolution_image)
     plt.title('Reduced Resolution Image')
 

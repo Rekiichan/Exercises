@@ -2,40 +2,58 @@ from matplotlib import pyplot as plt
 import numpy as np
 import cv2 as cv
 
-def b1():
-    Init_Image = np.loadtxt('1_3.asc')
-    Enlarged_Image = np.zeros((384,256))
-    reduced_resolution_image = cv.resize(src=Init_Image, dsize=(64, 96))
-    for row in range(0, 96):
-        for col in range(0, 64):
-            for i in range(0,4):
-                for j in range(0,4):
-                    Enlarged_Image[row*4+i][col*4+j] = int(reduced_resolution_image[row, col])
+def Reduce_Resolution(mat, factorValue):
+    cols = int(len(mat[0]) / factorValue)
+    rows = int(len(mat) / factorValue)
+    out = cv.resize(src=mat, dsize=(cols,rows))
+    return out
+
+def b1(Init_Image,factorValue):
+    r, c = Init_Image.shape
+    Enlarged_Image = np.zeros((r,c))
+    reduced_resolution_image = Reduce_Resolution(Init_Image, factorValue)
+    rows, cols = int(r/4), int(c/4)
+    for row in range(0, rows):
+        for col in range(0, cols):
+            Enlarged_Image[row*4:row*4+4,col*4:col*4+4] = reduced_resolution_image[row, col]
     return Enlarged_Image
 
-def b2():
-    Init_Image = np.loadtxt('1_3.asc')
-    rows = len(Init_Image) * 4
-    cols = len(Init_Image[0]) * 4
-    convertedImage = np.zeros((rows,cols))
-    for row in range(0, len(Init_Image) - 1):
-        for col in range(0, len(Init_Image[0]) - 1):
-            newRow, newCol = row*4, col*4
-            convertedImage[newRow][newCol] = Init_Image[row][col]
-            val_col = (Init_Image[row][col+1] - Init_Image[row][col]) / 4
-            val_row = (Init_Image[row+1][col] - Init_Image[row][col]) / 4
-            for i in range(1, 4):
-                for j in range(1,4):
-                    convertedImage[newRow + i][newCol] = val_row*i + Init_Image[row][col]
-                    convertedImage[newRow][newCol + j] = val_col*j + Init_Image[row][col]
-    return convertedImage
+def b2(Init_Image,factorValue):
+    Enlarged_Image = np.zeros((384,256))
+    Reduced_Image = Reduce_Resolution(Init_Image, 4)
+    rowReduImg = len(Reduced_Image)
+    colReduImg = len(Reduced_Image[0])
+    rows = rowReduImg + (factorValue - 1) * (rowReduImg - 1)
+    cols = colReduImg + (factorValue - 1) * (colReduImg- 1)
+
+    Enlarged_Image = np.zeros((rows,cols))
+
+    for row in range(0,rows,factorValue):
+        for col in range(0,cols,factorValue):
+            Enlarged_Image[row][col] = Reduced_Image[int(row/factorValue)][int(col/factorValue)]
+
+    for row in range(0,rows,factorValue):
+        for col in range(1, cols,factorValue):
+            value = Enlarged_Image[row][col + factorValue - 1] - Enlarged_Image[row][col - 1]
+            value = value / factorValue
+            for i in range(col,factorValue + col - 1):
+                Enlarged_Image[row][i] = Enlarged_Image[row][col - 1] + value*(i%factorValue)
+
+    for col in range(0,cols):
+        for row in range(1, rows,factorValue):
+            value = Enlarged_Image[row + factorValue - 1][col] - Enlarged_Image[row - 1][col]
+            value = value / factorValue
+            for i in range(row,factorValue + row - 1):
+                Enlarged_Image[i][col] = Enlarged_Image[row - 1][col] + value*(i%factorValue)  
+    return Enlarged_Image
 
 if __name__ == "__main__":
-    B1_image = b1()
-    B2_image = b2()
+    Init_Image = np.loadtxt('1_3.asc')
+    B1_image = b1(Init_Image,4)
+    B2_image = b2(Init_Image,4)
 
     fig = plt.figure(figsize=(12, 9))
-
+    plt.gray()
     fig.add_subplot(1, 2, 1)
     plt.imshow(B1_image)
     plt.title('B1_image')
@@ -45,3 +63,4 @@ if __name__ == "__main__":
     plt.title('B2_image')
 
     plt.show()
+
