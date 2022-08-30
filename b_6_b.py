@@ -10,7 +10,7 @@ def process(src):
 
     for row in range(0,rows):
         for col in range(0,cols):
-            if (Init_Image[row][col][0] >= 128):
+            if (Init_Image[row][col][0] >= 80):
                 converted_img[row][col] = 255
             else:
                 converted_img[row][col] = 0

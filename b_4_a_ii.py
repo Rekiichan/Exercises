@@ -5,8 +5,6 @@ def process(mat):
     rows = len(mat)
     cols = len(mat[0])
     res = np.zeros((int(rows / 4), int(cols / 4)))
-    print(res.shape)
-    print(mat.shape)
     for row in range(0,rows,4):
         for col in range(0,cols,4):
             average_matrix = mat[row : row + 4, col : col + 4]
@@ -21,7 +19,7 @@ if __name__ == "__main__":
 
     fig = plt.figure(figsize=(10, 7)) #create figure
     fig.add_subplot(1, 2, 1)
-
+    plt.gray()
     plt.imshow(Init_Image)
     plt.title('original')
 

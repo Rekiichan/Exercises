@@ -25,5 +25,3 @@ if __name__ == "__main__":
     plt.title('Enlarged Image')
 
     plt.show()
-
-

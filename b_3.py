@@ -15,7 +15,6 @@ def process(src, rowsOfBlock, colsOfBlock):
             for index_row in range(0,rowOfOneBlock):
                 for index_col in range(0,colOfOneBlock):
                     out[rev_row*rowOfOneBlock + index_row][rev_col*colOfOneBlock + index_col] = img[row*rowOfOneBlock + index_row][col*colOfOneBlock + index_col]
-            
     return img, out
 
 if __name__ == "__main__":

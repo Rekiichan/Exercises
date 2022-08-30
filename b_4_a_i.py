@@ -9,17 +9,18 @@ def process(mat, factorValue):
     return out
 
 if __name__ == "__main__":
-    mat = np.loadtxt('1_3.asc')
-    res = process(mat,4)
+    Init_Image = np.loadtxt('1_3.asc')
+    reduced_image = process(Init_Image,4)
     fig = plt.figure(figsize=(10, 7)) #create figure
-
+    plt.gray()
     fig.add_subplot(1, 2, 1)
     
-    plt.imshow(mat)
+    plt.imshow(Init_Image)
     plt.title('original')
 
     fig.add_subplot(1, 2, 2)
-    plt.imshow(res)
+    plt.imshow(reduced_image)
     plt.title('result')
 
     plt.show()
+
